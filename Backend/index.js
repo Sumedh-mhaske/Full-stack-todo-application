@@ -48,9 +48,18 @@ app.put("/completed", async (req, res) => {
     return;
   }
 
-  await todo.update({
-    completed: true,
-  });
+  await todo.update(
+    {
+      _id: req.body.id,
+    },
+    {
+      completed: true,
+    },
+
+    res.json({
+      msg: "Todo marked as completed",
+    }),
+  );
 });
 
 app.listen(() => console.log(`App is running on ${port}`));
